@@ -7,5 +7,6 @@ Max 文件夹下代码拖入项目中
 Podfile 添加以下指令, 然后执行 pod install 
 
   pod 'AppLovinSDK','11.6.0'
+  
   pod 'AnyThinkiOS','6.1.66'
 
