@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MaxCustomSDK' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'Masonry'
+  pod 'LocalThirdPartySDK/anythink', :path=> 'ThirdPartySDK/'
+  pod 'LocalThirdPartySDK/applovin', :path=> 'ThirdPartySDK/'
+  # Pods for MaxCustomSDK
+
+end
+
+target 'MaxSDKAdapter' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'Masonry'
+  pod 'LocalThirdPartySDK/anythink', :path=> 'ThirdPartySDK/'
+  pod 'LocalThirdPartySDK/applovin', :path=> 'ThirdPartySDK/'
+
+
+end

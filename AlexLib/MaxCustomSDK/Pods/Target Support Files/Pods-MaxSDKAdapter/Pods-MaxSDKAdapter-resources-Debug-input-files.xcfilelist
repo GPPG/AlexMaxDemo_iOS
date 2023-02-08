@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-MaxSDKAdapter/Pods-MaxSDKAdapter-resources.sh
+${PODS_ROOT}/../ThirdPartySDK/anythink/AnyThinkSDK.bundle
+${PODS_ROOT}/../ThirdPartySDK/applovin/AppLovinSDKResources.bundle
