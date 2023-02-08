@@ -6,8 +6,9 @@ target 'MaxCustomSDK' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Masonry'
-  pod 'LocalThirdPartySDK/anythink', :path=> 'ThirdPartySDK/'
-  pod 'LocalThirdPartySDK/applovin', :path=> 'ThirdPartySDK/'
+   pod 'AppLovinSDK','11.6.0'
+  
+  pod 'AnyThinkiOS','6.1.66'
   # Pods for MaxCustomSDK
 
 end
@@ -16,8 +17,9 @@ target 'MaxSDKAdapter' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Masonry'
-  pod 'LocalThirdPartySDK/anythink', :path=> 'ThirdPartySDK/'
-  pod 'LocalThirdPartySDK/applovin', :path=> 'ThirdPartySDK/'
-
+  
+  pod 'AppLovinSDK','11.6.0'
+  
+  pod 'AnyThinkiOS','6.1.66'
 
 end
