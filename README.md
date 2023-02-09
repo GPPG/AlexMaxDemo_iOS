@@ -29,7 +29,7 @@
 ![image1](https://user-images.githubusercontent.com/124124788/217697673-6991552e-d4de-466d-976c-cc3903cdc60e.png)
 
 
-2、选择【自定义广告平台】，填写广告平台名称、账号名称，按照SDK的对接文档填写Adapter, 广告平台名称需要写上Max，便于区分广告平台，建议名称格式：Max_XXXXX
+2、选择【自定义广告平台】，填写广告平台名称、账号名称，按照SDK的对接文档填写Adapter.  ps:(广告平台名称需要写上Max，便于区分广告平台，建议名称格式：Max_XXXXX)
 
 ![image2](https://user-images.githubusercontent.com/124124788/217697688-3bc7cc6b-ea95-4887-948c-7eeb30402fbe.png)
 
