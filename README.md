@@ -26,15 +26,17 @@
 
 1、按照SDK对接文档接入同时，需要在后台添加自定义广告平台
 
-![img](img/image1.png)
+![image1](https://user-images.githubusercontent.com/124124788/217697673-6991552e-d4de-466d-976c-cc3903cdc60e.png)
+
 
 2、选择【自定义广告平台】，填写广告平台名称、账号名称，按照SDK的对接文档填写Adapter
 
-![img](img/image2.png)
+![image2](https://user-images.githubusercontent.com/124124788/217697688-3bc7cc6b-ea95-4887-948c-7eeb30402fbe.png)
+
 
 3、记录广告平台ID
 
-![img](img/image3.png)
+![image3](https://user-images.githubusercontent.com/124124788/217697699-a08a413b-0e91-4dcb-bb44-56a1ef4c0e39.png)
 
 4、广告平台添加完成后，需要等待15min左右，再添加广告源（添加广告源时按照对应样式配置即可）
 
