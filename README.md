@@ -20,7 +20,23 @@
   
   pod 'AnyThinkiOS','6.1.65'
 
+3、Adapter中使用的Key说明如下：
 
+```
+"sdk_key": 广告平台的SDK Key
+"unit_id": 广告平台的广告位ID
+"unit_type": 广告位类型，0: Banner, 1: MREC
+```
+
+后台添加广告源时的JSON配置示例如下：（xxx需要替换为Max实际的SDK key以及广告位ID，非横幅广告位不需要配置"unit_type"）
+
+```
+{
+    "sdk_key":"xxx",
+    "unit_id":"xxx",
+    "unit_type":"0"
+}
+```
 
 ### 三. 后台配置
 
