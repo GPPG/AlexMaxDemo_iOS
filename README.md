@@ -20,7 +20,7 @@
   
   pod 'AnyThinkiOS','6.1.65'
 
-3、Adapter中使用的Key说明如下：
+3.Adapter中使用的Key说明如下：
 
 ```
 "sdk_key": 广告平台的SDK Key
