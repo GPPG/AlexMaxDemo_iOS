@@ -85,21 +85,16 @@ Please refer to [TopOn SDK Integration Documentation](https://docs.toponad.com/#
 
 1. You need to add a Custom Network.
 
-![image2023-2-27_19-16-12](https://user-images.githubusercontent.com/124124788/222122909-d411bd1b-c5c1-4304-9ced-8104088a414e.png)
-
-
+![image2023-2-27_19-15-32](https://user-images.githubusercontent.com/124124788/222122967-b1b67485-8e08-4cf7-836b-6990ac63ad6c.png)
 
 2. Choose "Custom Network". Fill in Network Name/Account Name and Adapter's class names according to the contents above.
 *Network Name needs to contain Max to distinguish the Network. Example: Max_XXXXX,
 
-
-
-![image2023-2-27_19-10-27](https://user-images.githubusercontent.com/124124788/222122930-b9de53a6-1a4d-4195-a376-ef17124ea1cd.png)
+![image2023-2-27_19-16-12](https://user-images.githubusercontent.com/124124788/222122909-d411bd1b-c5c1-4304-9ced-8104088a414e.png)
 
 3. Mark the Network Firm ID
-
-![image2023-2-27_19-15-32](https://user-images.githubusercontent.com/124124788/222122967-b1b67485-8e08-4cf7-836b-6990ac63ad6c.png)
-
+4. 
+![image2023-2-27_19-10-27](https://user-images.githubusercontent.com/124124788/222122930-b9de53a6-1a4d-4195-a376-ef17124ea1cd.png)
 
 4. You can add the Ad Sources after adding the Network.
 
