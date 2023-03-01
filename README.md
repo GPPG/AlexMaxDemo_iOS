@@ -28,16 +28,6 @@
 "unit_type": 广告位类型，0: Banner, 1: MREC
 ```
 
-后台添加广告源时的JSON配置示例如下：（xxx需要替换为Max实际的SDK key以及广告位ID，非横幅广告位不需要配置"unit_type"）
-
-```
-{
-    "sdk_key":"xxx",
-    "unit_id":"xxx",
-    "unit_type":"0"
-}
-```
-
 ### 三. 后台配置
 
 1、按照SDK对接文档接入同时，需要在后台添加自定义广告平台
@@ -90,15 +80,6 @@ Please refer to [TopOn SDK Integration Documentation](https://docs.toponad.com/#
 "unit_type": Ad unit type, 0: Banner, 1: MREC
 ```
 
-The JSON configuration example when adding an ad source in the background is as follows: (xxx needs to be replaced with the actual SDK key and ad slot ID of Max, and "unit_type" does not need to be configured for non-banner ad slots)
-
-```
-{
-     "sdk_key": "xxx",
-     "unit_id": "xxx",
-     "unit_type": "0"
-}
-```
 
 ### 3. Background configuration
 
