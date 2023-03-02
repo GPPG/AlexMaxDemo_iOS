@@ -10,9 +10,11 @@
 
 ## 二. 引入Alex Adapter
 
-1. Max 文件夹下代码拖入项目中
+1.将 Max 文件夹下源代码 或者 AlexMaxSDKAdapter.framework 拖入项目中
 
 <img width="987" alt="截屏2023-02-08 13 52 41" src="https://user-images.githubusercontent.com/124124788/217446269-c866b212-242a-425a-814a-f7aa14571be8.png">
+<img width="832" alt="截屏2023-03-02 13 51 36" src="https://user-images.githubusercontent.com/124124788/222342852-5b15d5ae-893e-4976-b47b-e1e14a006317.png">
+
 
 2.Podfile 添加以下指令, 然后执行 pod install 
 
@@ -40,6 +42,9 @@
 
 ![image2](https://user-images.githubusercontent.com/124124788/217697688-3bc7cc6b-ea95-4887-948c-7eeb30402fbe.png)
 
+将对应adapter的类名填入相关位置
+
+<img width="755" alt="截屏2023-03-02 13 48 16" src="https://user-images.githubusercontent.com/124124788/222342357-76892468-7b88-4dd1-bc90-cd29bf361e61.png">
 
 3、记录广告平台ID
 
