@@ -20,6 +20,6 @@ target 'MaxSDKAdapter' do
   
   pod 'AppLovinSDK','11.6.0'
   
-  pod 'AnyThinkiOS','6.1.66'
+  pod 'AnyThinkiOS','6.1.65'
 
 end
