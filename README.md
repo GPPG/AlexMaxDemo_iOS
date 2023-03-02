@@ -62,6 +62,7 @@
 （1）如果找不到Mintegral v16.3.61版本对应的Adapter，可通过查看Adapter的Changelog，找到对应的Adapter版本
 
 （2）需确保TopOn和Max都兼容Mintegral SDK
+![image4](https://user-images.githubusercontent.com/124124788/222310868-8742a84c-61ef-4538-a907-1c94b085eab7.png)
 
 # integration
 
