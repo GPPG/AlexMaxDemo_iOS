@@ -50,7 +50,6 @@
 5、可编辑广告平台设置，选择是否开通报表api并拉取数据
 
 
-#AlexMaxDemo_iOS
 
 # integration
 
