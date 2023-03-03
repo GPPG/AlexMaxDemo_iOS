@@ -2,7 +2,7 @@
 
 # 集成
 
-Tip: If necessary, please refer to [the English documentation](https://github.com/Alex-only/AlexMaxDemo_Android/blob/main/README_EN.md)
+Tip: If necessary, please refer to [the English documentation](https://github.com/Alex-only/AlexMaxDemo_iOS/blob/main/README_EN.md)
 
 ## 一. 接入TopOn SDK
 
