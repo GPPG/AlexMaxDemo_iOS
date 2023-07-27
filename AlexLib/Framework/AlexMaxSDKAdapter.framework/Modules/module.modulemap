@@ -1,6 +1,0 @@
-framework module AlexMaxSDKAdapter {
-  umbrella header "AlexMaxSDKAdapter.h"
-
-  export *
-  module * { export * }
-}

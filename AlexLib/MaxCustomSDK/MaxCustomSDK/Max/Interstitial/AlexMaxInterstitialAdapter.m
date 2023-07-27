@@ -101,7 +101,7 @@
     if (request.customObject && request.bidCompletion) {
         MAInterstitialAd *interstitialAd = request.customObject;
         if (interstitialAd.isReady) {
-            ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString token:unitGroupModel.content[@"unit_id"] price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];
+            ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];
             request.bidCompletion(bidInfo, nil);
             return;
         }

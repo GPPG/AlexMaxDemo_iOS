@@ -2,7 +2,6 @@
 
 #import "AlexMaxBaseManager.h"
 #import <AnyThinkSDK/AnyThinkSDK.h>
-#import <AnyThinkSDK/ATAppSettingManager.h>
 #import <AppLovinSDK/ALSdkConfiguration.h>
 
 @interface AlexMaxBaseManager()
@@ -37,16 +36,6 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [[ATAPI sharedInstance] setVersion:[ALSdk version] forNetwork:kATNetworkNameMax];
-        
-        BOOL isCOPPA = [[ATAppSettingManager sharedManager] complyWithCOPPA];
-        if (isCOPPA) {
-            [ALPrivacySettings setIsAgeRestrictedUser:YES];
-        }
-        
-        BOOL isCCPA = [[ATAppSettingManager sharedManager] complyWithCCPA];
-        if (isCCPA) {
-            [ALPrivacySettings setDoNotSell:YES];
-        }
         
     });
 }
@@ -98,10 +87,8 @@
         [ALPrivacySettings setHasUserConsent:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinConscentStatusKey] boolValue]];
         [ALPrivacySettings setIsAgeRestrictedUser:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinUnderAgeKey] boolValue]];
     } else {
-        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;
-        BOOL set = NO;
-        BOOL limit = [[ATAppSettingManager sharedManager] limitThirdPartySDKDataCollection:&set networkFirmID:unitGroupModel.networkFirmID];
-        if (state || (set && limit)) {
+        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;        
+        if (state) {
             [ALPrivacySettings setHasUserConsent:YES];
         } else {
             [ALPrivacySettings setHasUserConsent:NO];

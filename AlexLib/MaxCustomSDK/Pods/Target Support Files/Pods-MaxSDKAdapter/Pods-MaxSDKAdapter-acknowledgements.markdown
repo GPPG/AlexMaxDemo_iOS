@@ -1,11 +1,11 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
-## LocalThirdPartySDK
+## AnyThinkiOS
 
 MIT License
 
-Copyright (c) 2021 小树
+Copyright (c) 2020 TopOn
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -24,6 +24,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+## AppLovinSDK
+
+
+Copyright 2023 AppLovin Corp. All rights reserved.
+
+The AppLovin SDK is available under a commercial license (https://www.applovin.com/eula).
+
 
 
 ## Masonry

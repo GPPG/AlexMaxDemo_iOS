@@ -29,15 +29,21 @@
 
 #pragma mark - request CRUD
 - (void)saveRequestItem:(id)request withUnitId:(NSString *)unitID{
-    [self.requestDic setValue:request forKey:unitID];
+    @synchronized (self) {
+        [self.requestDic setValue:request forKey:unitID];
+    }
 }
 
 - (id)getRequestItemWithUnitID:(NSString*)unitID {
-    return [self.requestDic objectForKey:unitID];
+    @synchronized (self) {
+        return [self.requestDic objectForKey:unitID];
+    }
 }
 
 - (void)removeRequestItemWithUnitID:(NSString*)unitID {
-    [self.requestDic removeObjectForKey:unitID];
+    @synchronized (self) {
+        [self.requestDic removeObjectForKey:unitID];
+    }
 }
 
 - (NSDictionary *)getRequests {

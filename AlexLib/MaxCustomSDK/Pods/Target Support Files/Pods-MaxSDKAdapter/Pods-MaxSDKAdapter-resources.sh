@@ -97,12 +97,14 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_ROOT}/../ThirdPartySDK/anythink/AnyThinkSDK.bundle"
-  install_resource "${PODS_ROOT}/../ThirdPartySDK/applovin/AppLovinSDKResources.bundle"
+  install_resource "${PODS_ROOT}/AnyThinkiOS/AnyThinkiOS/LICENSE"
+  install_resource "${PODS_ROOT}/AnyThinkiOS/AnyThinkiOS/AnyThinkSDK.bundle"
+  install_resource "${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-11.9.0/AppLovinSDKResources.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_ROOT}/../ThirdPartySDK/anythink/AnyThinkSDK.bundle"
-  install_resource "${PODS_ROOT}/../ThirdPartySDK/applovin/AppLovinSDKResources.bundle"
+  install_resource "${PODS_ROOT}/AnyThinkiOS/AnyThinkiOS/LICENSE"
+  install_resource "${PODS_ROOT}/AnyThinkiOS/AnyThinkiOS/AnyThinkSDK.bundle"
+  install_resource "${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-11.9.0/AppLovinSDKResources.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

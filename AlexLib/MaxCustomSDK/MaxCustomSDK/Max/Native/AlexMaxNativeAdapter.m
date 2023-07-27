@@ -88,7 +88,7 @@
     AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
     
     if (request.customObject && request.bidCompletion) {
-        ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString token:unitGroupModel.content[@"unit_id"] price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];
+        ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];
         request.bidCompletion(bidInfo, nil);
         return;
     }

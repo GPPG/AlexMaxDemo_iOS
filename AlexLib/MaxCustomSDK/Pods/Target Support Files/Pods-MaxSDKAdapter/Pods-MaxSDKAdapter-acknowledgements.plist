@@ -16,7 +16,7 @@
 			<key>FooterText</key>
 			<string>MIT License
 
-Copyright (c) 2021 小树
+Copyright (c) 2020 TopOn
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,22 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>LocalThirdPartySDK</string>
+			<string>AnyThinkiOS</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>
+Copyright 2023 AppLovin Corp. All rights reserved.
+
+The AppLovin SDK is available under a commercial license (https://www.applovin.com/eula).
+
+</string>
+			<key>License</key>
+			<string>Commercial License</string>
+			<key>Title</key>
+			<string>AppLovinSDK</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

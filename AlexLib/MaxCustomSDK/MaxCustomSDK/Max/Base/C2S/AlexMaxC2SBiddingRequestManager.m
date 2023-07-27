@@ -189,7 +189,7 @@
         return;
     }
     
-    ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:request.placementID unitGroupUnitID:request.unitGroup.unitID adapterClassString:request.unitGroup.adapterClassString token:request.unitGroup.content[@"unit_id"] price:priceStr currencyType:ATBiddingCurrencyTypeUS expirationInterval:request.unitGroup.bidTokenTime customObject:customObject];
+    ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:request.placementID unitGroupUnitID:request.unitGroup.unitID adapterClassString:request.unitGroup.adapterClassString price:priceStr currencyType:ATBiddingCurrencyTypeUS expirationInterval:request.unitGroup.bidTokenTime customObject:customObject];
     bidInfo.networkFirmID = request.unitGroup.networkFirmID;
     bidInfo.curRate = [self handleRateForBidInfo:bidInfo];
     
