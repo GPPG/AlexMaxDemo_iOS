@@ -8,31 +8,65 @@ Tip: If necessary, please refer to [the English documentation](https://github.co
 
 请参考[TopOn SDK集成文档](https://docs.toponad.com/#/zh-cn/ios/GetStarted/TopOn_Get_Started)接入TopOn SDK，建议接入**TopOn v6.1.65及以上版本**
 
+### 1.1 推荐使用Cocoapods导入
+```
+// 版本号可选择稳定的版本，该例子以6.2.34
+    pod 'AnyThinkiOS','6.2.34'
+```
 
+## 二. 获取Adapter和SDK
 
-## 二. 引入Alex Adapter
+### 2.1 引入Max Adapter
 
-1.将 Max 文件夹下源代码 或者 AlexMaxSDKAdapter.framework 拖入项目中
+1.将 Max 文件夹下源代码 或者 MaxSDKAdapter.framework 拖入项目中
 
 <img width="987" alt="截屏2023-02-08 13 52 41" src="https://user-images.githubusercontent.com/124124788/217446269-c866b212-242a-425a-814a-f7aa14571be8.png">
-<img width="832" alt="截屏2023-03-02 13 51 36" src="https://user-images.githubusercontent.com/124124788/222342852-5b15d5ae-893e-4976-b47b-e1e14a006317.png">
+![Max_lib](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/53747ba4-bd5b-41ef-8154-d355dc2213ad)
 
+### 2.2 导入Max Mediation
 
-2.Podfile 添加以下指令, 然后执行 pod install 
+Max有不同的广告平台的Mediation，建议开发者导入需要对接的广告Mediation即可，可以到Max的[github](https://github.com/AppLovin/AppLovin-MAX-SDK-iOS/tree/master)下载资源包，可以切换tags找到相应的Max版本。
 
-  pod 'AppLovinSDK','11.6.0'
+下载后解压出来的文件如图所示，本文使用 AdColony 来做示例。
 
-  pod 'AnyThinkiOS','6.1.65'
+![Max_Mediation](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/b603e84e-ef63-43d1-a618-ac544d641db6)
 
+我们可以从图中找到Max上传到Cocoapods的AdColonyMediation依赖仓库名和对应的AdColonySDK版本号。如图：
+
+![Max_Mediation_pod](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/59737d8c-7794-41db-9a8f-c6782f318185)
+
+这样我们可以添加pod代码到我们的项目中的Podfile文件中
+```
+pod 'AppLovinMediationAdColonyAdapter','4.9.0.0.4'
+```
+
+### 2.3 Max Mediation SDK
+在 Podfile 添加以下指令, 然后执行 pod install ，该步骤作用是将你选取的Max聚合平台的SDK引入到项目中。该示例以 AdColony 为例
+
+1、可以使用TopOn的adapter的pod依赖来导入Max Mediation SDK
+
+```
+pod 'AnyThinkiOS/AnyThinkAdColonyAdapter','6.2.34'
+```
+
+2、直接使用广告平台的SDK
+
+```
+pod 'AppLovinSDK','11.9.0'
+```
+  
 3.Adapter中使用的Key说明如下：
 
 ```
+
+## 三. Adapter中使用的key说明如下：
+
 "sdk_key": 广告平台的SDK Key
 "unit_id": 广告平台的广告位ID
 "unit_type": 广告位类型，0: Banner, 1: MREC
 ```
 
-### 三. 后台配置
+## 四. 后台配置
 
 1、按照SDK对接文档接入同时，需要在后台添加自定义广告平台
 
@@ -56,7 +90,7 @@ Tip: If necessary, please refer to [the English documentation](https://github.co
 
 5、可编辑广告平台设置，选择是否开通报表api并拉取数据
 
-### 四. Max接入其他广告平台
+## 五. Max接入其他广告平台
 
 如果不需要通过Max接入其他广告平台，可跳过此部分内容。以接入Mintegral为例：
 
