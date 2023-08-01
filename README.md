@@ -137,7 +137,8 @@ pod 'AdColony','4.9.0'
 
 如图所示：
 
-![Unity_Max_Podfile](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/3ddfdbfc-51c0-4fe2-bdb3-02c08fb27d0b)
+![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
+
 
 
 ### 6.2 Flutter平台
