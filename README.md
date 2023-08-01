@@ -52,11 +52,7 @@ pod 'AnyThinkiOS/AnyThinkAdColonyAdapter','6.2.34'
 2、直接使用广告平台的SDK
 
 ```
-pod 'AppLovinSDK','11.9.0'
-```
-  
-3.Adapter中使用的Key说明如下：
-
+pod 'AdColony','4.9.0'
 ```
 
 ## 三. Adapter中使用的key说明如下：
@@ -104,6 +100,34 @@ pod 'AppLovinSDK','11.9.0'
 
 （2）需确保TopOn和Max都兼容Mintegral SDK
 ![image4](https://user-images.githubusercontent.com/124124788/222310868-8742a84c-61ef-4538-a907-1c94b085eab7.png)
+
+
+## 六. 跨平台对接
+
+### 6.1 Unity平台
+
+我们只需要把 MaxSDKAdapter.framework 导入到路径中，`Assets/AnyThinkAds/Plugins/iOS`，如图所示
+
+![Unity_Max_file](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/d0ed4837-1291-4ea4-aa0e-19465002eb37)
+
+/n然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子，在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
+
+```
+  pod 'AnyThinkiOS', '6.2.34'
+  pod 'AnyThinkiOS/AnyThinkAdColonyAdapter','6.2.34'
+  pod 'AppLovinMediationAdColonyAdapter','4.9.0.0.4'
+#  pod 'AdColony','4.9.0'
+```
+
+如图所示：
+
+![Unity_Max_Podfile](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/3ddfdbfc-51c0-4fe2-bdb3-02c08fb27d0b)
+
+### 6.2 Flutter平台
+
+我们只需要把 MaxSDKAdapter.framework 导入到路径中，`plugins/anythink_sdk/ios/ThirdPartySDK`，如图所示，然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子
+
+![Flutter_Max_setting](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/dde19de8-e04a-40e5-93ab-24f97411967f)
 
 
 
