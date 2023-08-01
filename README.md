@@ -124,7 +124,7 @@ pod 'AdColony','4.9.0'
 
 我们只需要把 MaxSDKAdapter.framework 导入到路径中，`Assets/AnyThinkAds/Plugins/iOS`，如图所示
 
-![Unity_Max_file](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/d0ed4837-1291-4ea4-aa0e-19465002eb37)
+![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
 
 /n然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子，在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
 
@@ -137,7 +137,7 @@ pod 'AdColony','4.9.0'
 
 如图所示：
 
-![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
+![Unity_Max_Podfile](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/000a21db-b325-4669-9064-ae47b70c5e8d)
 
 
 
