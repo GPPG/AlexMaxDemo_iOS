@@ -28,7 +28,7 @@ NSString *const kATMAXNativeAssetsExpressAdViewKey = @"max_express_ad_view";
 - (void)didFailToLoadNativeAdForAdUnitIdentifier:(NSString *)adUnitIdentifier withError:(MAError *)error {
     
     NSError *loadFailError = [NSError errorWithDomain:(adUnitIdentifier ?: @"") code:error.code userInfo:@{
-        NSLocalizedDescriptionKey:kATSDKFailedToLoadInterstitialADMsg,
+        NSLocalizedDescriptionKey:kATSDKFailedToLoadNativeADMsg,
         NSLocalizedFailureReasonErrorKey:error.message
     }];
     if (self.isC2SBiding) {

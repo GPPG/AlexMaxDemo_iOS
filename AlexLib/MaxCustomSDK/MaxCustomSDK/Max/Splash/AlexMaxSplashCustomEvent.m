@@ -21,7 +21,7 @@
 - (void)didFailToLoadAdForAdUnitIdentifier:(NSString *)adUnitIdentifier withError:(MAError *)error {
     
     NSError *loadFailError = [NSError errorWithDomain:(adUnitIdentifier ?: @"") code:error.code userInfo:@{
-        NSLocalizedDescriptionKey:kATSDKFailedToLoadInterstitialADMsg,
+        NSLocalizedDescriptionKey:kATSDKFailedToLoadSplashADMsg,
         NSLocalizedFailureReasonErrorKey:error.message
     }];
     if (self.isC2SBiding) {
@@ -45,7 +45,7 @@
 
 - (void)didFailToDisplayAd:(MAAd *)ad withError:(MAError *)error {
     NSError *showFailError = [NSError errorWithDomain:@"com.anythink.MaxSplash" code:error.code userInfo:@{
-        NSLocalizedDescriptionKey:kATSDKFailedToLoadBannerADMsg,
+        NSLocalizedDescriptionKey:kATSDKFailedToLoadSplashADMsg,
         NSLocalizedFailureReasonErrorKey:error.message
     }];
     [self trackSplashAdShowFailed:showFailError];

@@ -24,7 +24,7 @@
 - (void)didFailToLoadAdForAdUnitIdentifier:(NSString *)adUnitIdentifier withError:(MAError *)error {
     
     NSError *loadFailError = [NSError errorWithDomain:(adUnitIdentifier ?: @"") code:error.code userInfo:@{
-        NSLocalizedDescriptionKey:kATSDKFailedToLoadBannerADMsg,
+        NSLocalizedDescriptionKey:kATSDKFailedToLoadRewardedVideoADMsg,
         NSLocalizedFailureReasonErrorKey:error.message
     }];
     if (self.isC2SBiding) {

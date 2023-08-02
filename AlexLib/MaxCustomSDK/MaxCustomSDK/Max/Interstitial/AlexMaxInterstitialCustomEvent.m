@@ -48,7 +48,7 @@
 
 - (void)didFailToDisplayAd:(MAAd *)ad withError:(MAError *)error {
     NSError *showFailError = [NSError errorWithDomain:@"com.anythink.MaxInterstitial" code:error.code userInfo:@{
-        NSLocalizedDescriptionKey:kATSDKFailedToLoadBannerADMsg,
+        NSLocalizedDescriptionKey:kATSDKFailedToLoadInterstitialADMsg,
         NSLocalizedFailureReasonErrorKey:error.message
     }];
     [self trackInterstitialAdShowFailed:showFailError];
