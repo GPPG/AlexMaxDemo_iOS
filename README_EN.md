@@ -79,6 +79,16 @@ The Key used in the Adapter is described as follows:
 2. Choose "Custom Network". Fill in Network Name/Account Name and Adapter's class names according to the contents above.
 *Network Name needs to contain Max to distinguish the Network. Example: Max_XXXXX,
 
+The files used in the SDK for this article are named:
+
+Interstitial：AlexMaxInterstitialAdapter<br/>
+Banner：AlexMaxBannerAdapter<br/>
+Native：AlexMaxNativeAdapter<br/>
+RewardedVideo：AlexMaxRewardedVideoAdapter<br/>
+Splash：AlexMaxSplashAdapter<br/>
+
+If the developer has modified the file name in the source code behind, please use the modified name to fill in the background.
+
 ![2](https://user-images.githubusercontent.com/124124788/222124025-dd7700ad-3190-4c30-a63f-2c82e13005bb.png)
 
 
