@@ -15,7 +15,7 @@ Tip: If necessary, please refer to [the English documentation](https://github.co
     pod 'AnyThinkiOS','6.2.34'
 ```
 
-## 二. 获取Adapter和SDK
+## 二. 获取Adapter和Mediation
 
 ### 2.1 引入Max Adapter
 
@@ -126,7 +126,7 @@ pod 'AdColony','4.9.0'
 
 ![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
 
-/n然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子，在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
+然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子，在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
 
 ```
   pod 'AnyThinkiOS', '6.2.34'
