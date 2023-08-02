@@ -87,7 +87,15 @@ pod 'AdColony','4.9.0'
 
 
 将对应adapter的类名填入相关位置
+本文的SDK所使用的文件命名为：
 
+插屏广告：AlexMaxInterstitialAdapter<br/>
+横幅广告：AlexMaxBannerAdapter<br/>
+原生信息流：AlexMaxNativeAdapter<br/>
+激励视频：AlexMaxRewardedVideoAdapter<br/>
+开屏广告：AlexMaxSplashAdapter<br/>
+
+如果开发者后面有源码中的文件名字修改了，请使用修改后的命名填入后台。
 
 <img width="755" alt="截屏2023-03-02 13 48 16" src="https://user-images.githubusercontent.com/124124788/222342357-76892468-7b88-4dd1-bc90-cd29bf361e61.png">
 
