@@ -81,10 +81,10 @@ The Key used in the Adapter is described as follows:
 
 The files used in the SDK for this article are named:
 
+RewardedVideo：AlexMaxRewardedVideoAdapter<br/>
 Interstitial：AlexMaxInterstitialAdapter<br/>
 Banner：AlexMaxBannerAdapter<br/>
 Native：AlexMaxNativeAdapter<br/>
-RewardedVideo：AlexMaxRewardedVideoAdapter<br/>
 Splash：AlexMaxSplashAdapter<br/>
 
 If the developer has modified the file name in the source code behind, please use the modified name to fill in the background.
