@@ -66,7 +66,9 @@
     [customInfo setValue:self.maxAd.networkName forKey:@"NetworkName"];
     [customInfo setValue:self.maxAd.networkPlacement forKey:@"NetworkPlacement"];
     [customInfo setValue:self.maxAd.placement forKey:@"Placement"];
-    [customInfo setValue:[ALSdk shared].configuration.countryCode forKey:@"CountryCode"];
+    
+    ALSdk *alSdk = [ALSdk sharedWithKey:self.serverInfo[@"sdk_key"]];
+    [customInfo setValue:alSdk.configuration.countryCode forKey:@"CountryCode"];
     return customInfo;
 }
 

@@ -11,7 +11,7 @@ DEPENDENCIES:
   - Masonry
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/CocoaPods/Specs:
     - AnyThinkiOS
     - AppLovinSDK
     - Masonry
@@ -21,6 +21,6 @@ SPEC CHECKSUMS:
   AppLovinSDK: 2022f21e5b713b2c04bb7c2f10bde0f2dea89f11
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: ed55b00014d22960821f03a6f864000959d13195
+PODFILE CHECKSUM: ed16d97d0b6fb95d9cbddd6eefbb162788c10cbf
 
 COCOAPODS: 1.11.3
