@@ -12,12 +12,22 @@ Tip: If necessary, please refer to [the English documentation](https://github.co
 
 ```
 // 版本号可选择稳定的版本，该例子以6.2.34
-    pod 'AnyThinkiOS','6.2.34'
+pod 'AnyThinkiOS','6.2.34'
 ```
 
-## 二. 获取Adapter和Mediation
+## 二. 引入Max SDK&Alex Adapter
 
-### 2.1 引入Max Adapter
+### iOS
+
+#### 1. 引入Max SDK
+
+```
+pod 'AppLovinSDK'
+```
+
+
+
+#### 2. 引入Alex Adapter
 
 1.将 Max 文件夹下源代码 或者 MaxSDKAdapter.framework 拖入项目中
 
@@ -25,51 +35,115 @@ Tip: If necessary, please refer to [the English documentation](https://github.co
 
 ![Max_lib](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/53747ba4-bd5b-41ef-8154-d355dc2213ad)
 
-### 2.2 导入Max Mediation
-
-Max有不同的广告平台的Mediation，建议开发者导入需要对接的广告Mediation即可，可以到Max的[github](https://github.com/AppLovin/AppLovin-MAX-SDK-iOS/tree/master)下载资源包，可以切换tags找到相应的Max版本。
-
-下载后解压出来的文件如图所示，本文使用 AdColony 来做示例。
 
 
-![Max_Mediation](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/b603e84e-ef63-43d1-a618-ac544d641db6)
 
 
-我们可以从图中找到Max上传到Cocoapods的AdColonyMediation依赖仓库名和对应的AdColonySDK版本号。如图：
+###  Unity平台
 
+我们只需要把 MaxSDKAdapter.framework 导入到路径中，`Assets/AnyThinkAds/Plugins/iOS`，如图所示
 
-![Max_Mediation_pod](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/59737d8c-7794-41db-9a8f-c6782f318185)
+![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
 
-
-这样我们可以添加pod代码到我们的项目中的Podfile文件中
+在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
 
 ```
-pod 'AppLovinMediationAdColonyAdapter','4.9.0.0.4'
+pod 'AnyThinkiOS', '6.2.34'
+pod 'AppLovinSDK'
 ```
 
+###  Flutter平台
 
-### 2.3 Max Mediation SDK
-在 Podfile 添加以下指令, 然后执行 pod install ，该步骤作用是将你选取的Max聚合平台的SDK引入到项目中。该示例以 AdColony 为例
+我们只需要把 MaxSDKAdapter.framework 导入到路径中，`plugins/anythink_sdk/ios/ThirdPartySDK`，添加完毕后使用 pod install进行依赖。
 
-1、可以使用TopOn的adapter的pod依赖来导入Max Mediation SDK
+![flutter_max](Assets/flutter_max.png)
 
-```
-pod 'AnyThinkiOS/AnyThinkAdColonyAdapter','6.2.34'
-```
 
-2、直接使用广告平台的SDK
 
-```
-pod 'AdColony','4.9.0'
-```
-
-## 三. Adapter中使用的key说明如下：
+### 3. Adapter中使用的Key说明
 
 ```
 "sdk_key": 广告平台的SDK Key
 "unit_id": 广告平台的广告位ID
 "unit_type": 广告位类型，0: Banner, 1: MREC
 ```
+
+后台添加广告源时的JSON配置示例如下：（xxx需要替换为Max实际的SDK key以及广告位ID，非横幅广告位不需要配置"unit_type"）
+
+```json
+{
+    "sdk_key":"xxx",
+    "unit_id":"xxx",
+    "unit_type":"0"
+}
+```
+
+
+
+## 三. Max接入其他广告平台
+
+<font color='red'>如果不需要通过Max接入其他广告平台，可跳过此部分内容。</font>
+
+### 1.确定广告平台Adapter版本
+
+1、先到 [TopOn后台](https://docs.toponad.com/#/zh-cn/android/download/package)，查看接入的TopOn版本兼容的Admob版本是多少？（TopOn v6.2.75版本兼容的Admob版本为v10.8.0）
+
+2、然后到 [Max后台](https://dash.applovin.com/documentation/mediation/android/mediation-adapters#adapter-network-information)，根据接入的Max SDK版本（v11.11.3）和Admob版本（v10.11.0.0），查找对应的Adapter版本（v10.11.0.0）
+
+![max_admob](Assets/max_admob.png)
+
+**注意：**
+
+（1）如果找不到Admob v10.8.0对应的Adapter，可通过查看Adapter的Changelog，找到对应的Adapter版本
+
+![max_admob_tip_01](Assets/max_chang_log.png)
+
+（2）需确保TopOn和Max都兼容Admob SDK
+
+
+
+### 2. 引入广告平台Adapter
+
+```
+pod 'AppLovinMediationGoogleAdapter','10.11.0.0'
+```
+
+
+
+### 3. 广告平台的额外配置
+
+进入[Preparing Mediated Networks](https://dash.applovin.com/documentation/mediation/ios/mediation-adapters)页面，然后勾选Admob，根据生成的配置说明，进行额外配置
+
+**注意**：配置在Info.plist中的`GADApplicationIdentifier`，其对应的应用ID，必须与TopOn后台配置的Admob广告源中的应用ID一致
+
+![max_admob_tip_01](Assets/max_admob_tip_01.png)
+
+![max_admob_tip_01](Assets/max_admob_tip_02.png)
+
+![max_admob_tip_01](Assets/max_admob_tip_03.png)
+
+
+
+### 4. 验证集成
+
+4.1 调用以下代码，开启Max的Mediation Debugger工具
+
+**注意：**
+
+- 其中sdkKey为Max后台的SDK Key
+- 测试完毕后，需删除此代码
+
+```
+[[ALSdk shared] showMediationDebugger];
+```
+
+
+
+4.2 进入[Mediation-Debugger](https://dash.applovin.com/documentation/mediation/ios/testing-networks/mediation-debugger)页面，按照以下步骤，验证广告平台集成是否正常
+
+![max_admob_tip_01](Assets/max_debugger.png)
+
+
 
 ## 四. 后台配置
 
@@ -81,10 +155,9 @@ pod 'AdColony','4.9.0'
 
 2、选择【自定义广告平台】，填写广告平台名称、账号名称，按照SDK的对接文档填写Adapter.  
    ps:(广告平台名称需要写上Max，便于区分广告平台，建议名称格式：Max_XXXXX)
-   
+
 
 ![image2](https://user-images.githubusercontent.com/124124788/217697688-3bc7cc6b-ea95-4887-948c-7eeb30402fbe.png)
-
 
 将对应adapter的类名填入相关位置
 本文的SDK所使用的文件命名为：
@@ -110,51 +183,89 @@ pod 'AdColony','4.9.0'
 
 5、可编辑广告平台设置，选择是否开通报表api并拉取数据
 
-## 五. Max接入其他广告平台
-
-如果不需要通过Max接入其他广告平台，可跳过此部分内容。以接入Mintegral为例：
-
-1、先到 [TopOn后台](https://docs.toponad.com/#/zh-cn/android/download/package)，查看接入的TopOn版本兼容的Mintegral版本是多少？（TopOn v6.1.65版本兼容的Mintegral版本为v16.3.61）
-
-2、然后到 [Max后台](https://dash.applovin.com/documentation/mediation/android/mediation-adapters#adapter-network-information)，根据接入的Max SDK版本（v11.6.0）和Mintegral版本（v16.3.61），查找对应的Adapter版本（即v16.3.61.0）
-
-**注意：**
-
-（1）如果找不到Mintegral v16.3.61版本对应的Adapter，可通过查看Adapter的Changelog，找到对应的Adapter版本
-
-（2）需确保TopOn和Max都兼容Mintegral SDK
-![image4](https://user-images.githubusercontent.com/124124788/222310868-8742a84c-61ef-4538-a907-1c94b085eab7.png)
 
 
-## 六. 跨平台对接
 
-### 6.1 Unity平台
 
-我们只需要把 MaxSDKAdapter.framework 导入到路径中，`Assets/AnyThinkAds/Plugins/iOS`，如图所示
+## 五. Max后台配置
 
-![Unity_Max_Podfile_1](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/266b34ab-6f1c-4878-bdb1-bf8a41c44ee3)
+### Step1.创建MAX帐号
 
-然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子，在Xcode中的Podfile文件添加，添加完毕后使用 pod install进行依赖。
+登录[MAX官网](https://dash.applovin.com/o/mediation)申请开通账号
 
+
+
+### Step2.创建MAX的应用和广告单元
+
+在MAX-->Manage-->Ad Units中创建应用和广告位
+
+![max_admob](Assets/max_1.png)
+
+
+
+### Step3.在MAX完成Network信息配置
+
+![max_admob](Assets/max_2.png)
+
+
+
+### Step4. MAX广告位说明
+
+MAX的Unit跟TopOn的广告类型对应关系如下：
+
+| MAX-Unit     | TopOn-广告类型              |
+| ------------ | --------------------------- |
+| Banner       | 横幅广告 Banner             |
+| Interstitial | 插屏广告 Interstitial       |
+| Rewarded     | 激励视频广告 Rewarded Video |
+| App Open     | 开屏广告 Splash             |
+| Native       | 原生广告 Native             |
+
+
+
+### Step5. 在后台配置MAX广告位
+
+#### 5.1 配置MAX 的广告源
+
+5.1.1 通过以下路径获取MAX 的Ad Unit ID：MAX-->Manage-->Ad Units
+
+![max_admob](Assets/max_3.png)
+
+5.1.2. 将MAX的参数配置在TopOn后台
+
+添加广告源，登录TopOn后台→广告平台→变现平台→广告源管理（Max）→添加广告源
+
+
+
+## 六、测试Max广告
+
+<font color='red'>请确保已经按照上方说明，已经在Max后台创建好应用和广告位，并将其配置到TopOn后台的广告位下</font>
+
+1. 打开TopOn SDK的日志
+
+```objective-c
+  [ATAPI setLogEnabled:YES];//SDK日志功能，集成测试阶段建议开启，上线前必须关闭
 ```
-  pod 'AnyThinkiOS', '6.2.34'
-  pod 'AnyThinkiOS/AnyThinkAdColonyAdapter','6.2.34'
-  pod 'AppLovinMediationAdColonyAdapter','4.9.0.0.4'
-#  pod 'AdColony','4.9.0'
-```
 
-如图所示：
+### 2. 打开Max的测试模式
 
-![Unity_Max_Podfile](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/000a21db-b325-4669-9064-ae47b70c5e8d)
+进入[MAX - Test Mode](https://dash.applovin.com/o/mediation/test_modes)页面，点击`Add Test Device`按钮，在IDFA (iOS) or GAID (Android)的输入框中填入上面获取到的GAID，然后选择需要进行测试的广告平台，点击`Save`进行保存。
 
+![max_admob](Assets/max_test_mode.png)
+
+> 更多信息，请参考 [MAX Test Mode](https://dash.applovin.com/documentation/mediation/android/testing-networks/test-mode)
 
 
-### 6.2 Flutter平台
 
-我们只需要把 MaxSDKAdapter.framework 导入到路径中，`plugins/anythink_sdk/ios/ThirdPartySDK`，如图所示，然后根据上述的步骤二中的2.2找到所需的Mediation，本文以AdColony Mediation为例子
+### 3. 加载&展示广告
+
+在Max后台添加测试设备后，请等待5~10分钟，待配置生效后，调用TopOn SDK的相关方法进行TopOn广告位的加载&展示，验证Max广告的集成是否正常
 
 
-![Flutter_Max_setting](https://github.com/Alex-only/AlexMaxDemo_iOS/assets/124124788/dde19de8-e04a-40e5-93ab-24f97411967f)
+
+
+
+
 
 
 
