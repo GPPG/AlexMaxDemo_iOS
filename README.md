@@ -133,8 +133,8 @@ pod 'AppLovinMediationGoogleAdapter','10.11.0.0'
 - 其中sdkKey为Max后台的SDK Key
 - 测试完毕后，需删除此代码
 
-```
-[[ALSdk shared] showMediationDebugger];
+```objective-c
+ [[ALSdk sharedWithKey:@"sdkKey"] showMediationDebugger];
 ```
 
 

@@ -132,8 +132,8 @@ Enter the [Preparing Mediated Networks](https://dash.applovin.com/documentation/
 - Among them, sdkKey is the SDK Key of Max background.
 - After testing, you need to delete this code
 
-```
-[[ALSdk shared] showMediationDebugger];
+```objective-c
+ [[ALSdk sharedWithKey:@"sdkKey"] showMediationDebugger];
 ```
 
 
