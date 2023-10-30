@@ -76,7 +76,7 @@
     sdk.userIdentifier = unitGroupModel.content[@"userID"];
     [sdk initializeSdkWithCompletionHandler:^(ALSdkConfiguration * _Nonnull configuration) {
         [AlexMaxBaseManager sharedManager].isInitSucceed = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:AlexMaxStartInitSuccessKey object:nil];
     }];
 }
 

@@ -20,7 +20,7 @@
 @implementation AlexMaxSplashAdapter
 
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ATMaxStartInitSuccessKey object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AlexMaxStartInitSuccessKey object:nil];
 }
 
 - (instancetype)initWithNetworkCustomInfo:(NSDictionary*)serverInfo localInfo:(NSDictionary*)localInfo {
@@ -40,7 +40,7 @@
     if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
         [self initSuccessStartLoad];
     }else{
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:AlexMaxStartInitSuccessKey object:nil];
         [AlexMaxBaseManager initALSDKWithServerInfo:serverInfo];
     }
 }
@@ -50,7 +50,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
 
         NSString *bidId = self.serverInfo[kATAdapterCustomInfoBuyeruIdKey];
-        AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+        AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
         
         if (bidId && request) {
             ATBidInfo *bidInfo = (ATBidInfo *)self.serverInfo[kATAdapterCustomInfoBidInfoKey];
@@ -67,7 +67,7 @@
             }
             self.splashAd = request.customObject;
             // remove requestItem
-            [[AlexNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+            [[AlexMAXNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
         } else {
             self.customEvent = [[AlexMaxSplashCustomEvent alloc]initWithInfo:self.serverInfo localInfo:self.localInfo];
             self.customEvent.requestCompletionBlock = self.completionBlock;
@@ -94,7 +94,7 @@
 #pragma mark - C2S
 + (void)bidRequestWithPlacementModel:(ATPlacementModel*)placementModel unitGroupModel:(ATUnitGroupModel*)unitGroupModel info:(NSDictionary*)info completion:(void(^)(ATBidInfo *bidInfo, NSError *error))completion {
     
-    AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
+    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
     
     if (request.customObject && request.bidCompletion) {
         MAAppOpenAd *splashAd = request.customObject;

@@ -19,7 +19,7 @@
 
 @implementation AlexMaxBannerAdapter
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ATMaxStartInitSuccessKey object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AlexMaxStartInitSuccessKey object:nil];
 }
 
 - (instancetype)initWithNetworkCustomInfo:(NSDictionary*)serverInfo localInfo:(NSDictionary*)localInfo {
@@ -40,7 +40,7 @@
     if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
         [self initSuccessStartLoad];
     }else{
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:AlexMaxStartInitSuccessKey object:nil];
         [AlexMaxBaseManager initALSDKWithServerInfo:serverInfo];
     }
 }
@@ -52,7 +52,7 @@
         NSString *bidId = self.serverInfo[kATAdapterCustomInfoBuyeruIdKey];
         if (bidId) {
             
-            AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+            AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
             self.customEvent = (AlexMaxBannerCustomEvent *)request.customEvent;
             self.customEvent.requestCompletionBlock = self.completionBlock;
             ATBidInfo *bidInfo = (ATBidInfo *)self.serverInfo[kATAdapterCustomInfoBidInfoKey];
@@ -63,7 +63,7 @@
             }
             
             // remove requestItem
-            [[AlexNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+            [[AlexMAXNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
             
         } else {
             self.customEvent = [[AlexMaxBannerCustomEvent alloc]initWithInfo:self.serverInfo localInfo:self.localInfo];
@@ -82,7 +82,7 @@
 #pragma mark - C2S
 + (void)bidRequestWithPlacementModel:(ATPlacementModel*)placementModel unitGroupModel:(ATUnitGroupModel*)unitGroupModel info:(NSDictionary*)info completion:(void(^)(ATBidInfo *bidInfo, NSError *error))completion {
     
-    AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
+    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
     
     if (request.customObject && request.bidCompletion) {
         

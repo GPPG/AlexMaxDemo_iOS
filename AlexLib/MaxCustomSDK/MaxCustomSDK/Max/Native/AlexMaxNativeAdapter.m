@@ -19,7 +19,7 @@
 
 @implementation AlexMaxNativeAdapter
 - (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:ATMaxStartInitSuccessKey object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AlexMaxStartInitSuccessKey object:nil];
 }
 
 - (instancetype)initWithNetworkCustomInfo:(NSDictionary*)serverInfo localInfo:(NSDictionary*)localInfo {
@@ -39,17 +39,18 @@
     if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
         [self initSuccessStartLoad];
     }else{
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:AlexMaxStartInitSuccessKey object:nil];
         [AlexMaxBaseManager initALSDKWithServerInfo:serverInfo];
     }
 }
 
 - (void)initSuccessStartLoad {
     
+    
     dispatch_async(dispatch_get_main_queue(), ^{
 
         NSString *bidId = self.serverInfo[kATAdapterCustomInfoBuyeruIdKey];
-        AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+        AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
         
         if (bidId && request) {
             self.customEvent = (AlexMaxNativeCustomEvent *)request.customEvent;
@@ -58,23 +59,23 @@
             self.customEvent.maxAd = bidInfo.customObject;
             if (request.customObject) {
                 self.maxNativeAdLoader = request.customObject;
-                self.customEvent.maxNativeAd = self.maxNativeAdLoader;
-                [self.customEvent maxExpressWithMaAd:request.customObject nativeAdView:request.nativeAds.firstObject];
+                self.customEvent.maxNativeAdLoader = self.maxNativeAdLoader;
+                [self.customEvent maxNativeRenderWithMaAd:request.customObject nativeAdView:request.nativeAds.firstObject];
             }
             // remove requestItem
-            [[AlexNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
+            [[AlexMAXNetworkC2STool sharedInstance] removeRequestItemWithUnitID:self.serverInfo[@"unit_id"]];
             
         } else {
             self.customEvent = [[AlexMaxNativeCustomEvent alloc]initWithInfo:self.serverInfo localInfo:self.localInfo];
             self.customEvent.requestCompletionBlock = self.completionBlock;
             self.maxNativeAdLoader = [[MANativeAdLoader alloc] initWithAdUnitIdentifier:self.serverInfo[@"unit_id"] sdk:[ALSdk sharedWithKey:self.serverInfo[@"sdk_key"]]];
-            self.customEvent.maxNativeAd = self.maxNativeAdLoader;
+            
+            NSLog(@"MAX--unit_id:%@--sdk_key:%@",self.serverInfo[@"unit_id"],self.serverInfo[@"sdk_key"]);
+            self.customEvent.maxNativeAdLoader = self.maxNativeAdLoader;
             self.maxNativeAdLoader.nativeAdDelegate = self.customEvent;
             self.maxNativeAdLoader.revenueDelegate = self.customEvent;
-
             [self.maxNativeAdLoader loadAd];
-        }
-        
+        }        
     });
 }
 
@@ -85,7 +86,7 @@
 #pragma mark - C2S
 + (void)bidRequestWithPlacementModel:(ATPlacementModel*)placementModel unitGroupModel:(ATUnitGroupModel*)unitGroupModel info:(NSDictionary*)info completion:(void(^)(ATBidInfo *bidInfo, NSError *error))completion {
     
-    AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
+    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
     
     if (request.customObject && request.bidCompletion) {
         ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];

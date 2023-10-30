@@ -21,7 +21,7 @@
 
 - (void)startWithRequestItem:(AlexMaxBiddingRequest *)request{
     
-    [[AlexNetworkC2STool sharedInstance] saveRequestItem:request withUnitId:request.unitID];
+    [[AlexMAXNetworkC2STool sharedInstance] saveRequestItem:request withUnitId:request.unitID];
     
     if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
         [self initSuccessStartLoad:request];
@@ -35,7 +35,7 @@
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startInitSuccessNotification) name:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startInitSuccessNotification) name:AlexMaxStartInitSuccessKey object:nil];
     });
 }
 
@@ -183,7 +183,7 @@
     if ([priceStr doubleValue] < 0) {
         priceStr = @"0";
     }
-    AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:unitID];
+    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:unitID];
     request.price = priceStr;
     if (request == nil) {
         return;
@@ -200,7 +200,7 @@
 
 + (void)disposeLoadFailCall:(NSError *)error key:(NSString *)keyStr unitID:(NSString *)unitID {
     
-    AlexMaxBiddingRequest *request = [[AlexNetworkC2STool sharedInstance] getRequestItemWithUnitID:unitID];
+    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:unitID];
     if (request == nil) {
         return;
     }
@@ -210,7 +210,7 @@
             NSLocalizedDescriptionKey:keyStr,
             NSLocalizedFailureReasonErrorKey:error}]);
     }
-    [[AlexNetworkC2STool sharedInstance] removeRequestItemWithUnitID:unitID];
+    [[AlexMAXNetworkC2STool sharedInstance] removeRequestItemWithUnitID:unitID];
 }
 
 + (NSString *)handleRateForBidInfo:(ATBidInfo *)bidInfo {
