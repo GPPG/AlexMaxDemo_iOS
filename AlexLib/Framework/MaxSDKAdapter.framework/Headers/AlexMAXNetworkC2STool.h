@@ -5,7 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AlexNetworkC2STool : NSObject
+@interface AlexMAXNetworkC2STool : NSObject
 
 + (instancetype)sharedInstance;
 
@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeRequestItemWithUnitID:(NSString*)unitID;
 
 - (NSDictionary *)getRequests;
+
 
 @end
 
