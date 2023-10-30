@@ -3,6 +3,8 @@
 #import <AppLovinSDK/AppLovinSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
+#define AlexMaxAdapterVersion 1.0.1
+
 typedef NS_ENUM(NSUInteger, AlexMaxNativeRenderType) {
     AlexMaxNativeRenderTypeTemplate = 1,
     AlexMaxNativeRenderTypeSelfRendering = 2,

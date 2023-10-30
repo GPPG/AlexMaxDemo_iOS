@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSDictionary *)getRequests;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
