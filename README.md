@@ -1,5 +1,13 @@
 # AlexMaxDemo_iOS
 
+# v1.0.1版本更新说明：
+
+1.支持Max的自渲染广告接入，目前能适配Applovin，Admob，Pangle 的接入，[MaxAdapter支持版本](https://dash.applovin.com/documentation/mediation/ios/ad-formats/native-manual)
+
+2.[TopOn原生自渲染广告集成文档](https://newdocs.toponad.com/docs/GCybzJ)
+
+
+
 # 集成
 
 Tip: If necessary, please refer to [the English documentation](https://github.com/Alex-only/AlexMaxDemo_iOS/blob/main/README_EN.md)
