@@ -76,7 +76,7 @@
     sdk.userIdentifier = unitGroupModel.content[@"userID"];
     [sdk initializeSdkWithCompletionHandler:^(ALSdkConfiguration * _Nonnull configuration) {
         [AlexMaxBaseManager sharedManager].isInitSucceed = YES;
-        [[NSNotificationCenter defaultCenter] postNotificationName:ATMaxStartInitSuccessKey object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:AlexMaxStartInitSuccessKey object:nil];
     }];
 }
 
@@ -87,7 +87,7 @@
         [ALPrivacySettings setHasUserConsent:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinConscentStatusKey] boolValue]];
         [ALPrivacySettings setIsAgeRestrictedUser:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinUnderAgeKey] boolValue]];
     } else {
-        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;        
+        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;
         if (state) {
             [ALPrivacySettings setHasUserConsent:YES];
         } else {
@@ -143,7 +143,6 @@
     // 禁用自动重试
     [sdkSettings setExtraParameterForKey:@"disable_auto_retry_ad_formats" value: adFormats];
 }
-
 #pragma mark - other
 + (NSString *)getMaxFormat:(MAAd*)maxAd {
     NSString *maxFormat = @"";
