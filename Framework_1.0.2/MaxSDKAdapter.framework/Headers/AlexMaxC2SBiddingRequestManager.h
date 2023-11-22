@@ -1,7 +1,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AlexMaxBiddingRequest.h"
-#import "AlexNetworkC2STool.h"
+#import "AlexMAXNetworkC2STool.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AlexMaxC2SBiddingRequestManager : NSObject

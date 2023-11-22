@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		5D79A095BDAD938432947CA0 /* Pods_MaxSDKAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF66E22F21C0CC3D6142C9C /* Pods_MaxSDKAdapter.framework */; };
 		8E417C78D94A772A55EBFF13 /* Pods_MaxCustomSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CA20C89231B3756F477D47B /* Pods_MaxCustomSDK.framework */; };
-		E03660D62AEF86D6001CBB41 /* AlexMAXNetworkC2STool.h in Headers */ = {isa = PBXBuildFile; fileRef = E03660D42AEF86D6001CBB41 /* AlexMAXNetworkC2STool.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E03660D72AEF86D6001CBB41 /* AlexMAXNetworkC2STool.m in Sources */ = {isa = PBXBuildFile; fileRef = E03660D52AEF86D6001CBB41 /* AlexMAXNetworkC2STool.m */; };
+		E013C4472B0DA0A40060B40E /* AlexMAXNetworkC2STool.m in Sources */ = {isa = PBXBuildFile; fileRef = E013C4452B0DA0A40060B40E /* AlexMAXNetworkC2STool.m */; };
+		E013C4482B0DA0A40060B40E /* AlexMAXNetworkC2STool.h in Headers */ = {isa = PBXBuildFile; fileRef = E013C4462B0DA0A40060B40E /* AlexMAXNetworkC2STool.h */; };
 		E0D1A9F4298A0457008BAFBD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D1A9F3298A0457008BAFBD /* AppDelegate.m */; };
 		E0D1A9F7298A0457008BAFBD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D1A9F6298A0457008BAFBD /* SceneDelegate.m */; };
 		E0D1A9FA298A0457008BAFBD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E0D1A9F9298A0457008BAFBD /* ViewController.m */; };
@@ -67,8 +67,8 @@
 		1919D50801E63109D8C813D4 /* Pods-MaxSDKAdapter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxSDKAdapter.debug.xcconfig"; path = "Target Support Files/Pods-MaxSDKAdapter/Pods-MaxSDKAdapter.debug.xcconfig"; sourceTree = "<group>"; };
 		9AF66E22F21C0CC3D6142C9C /* Pods_MaxSDKAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaxSDKAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC378AE3C1F20C7409E528B /* Pods-MaxSDKAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaxSDKAdapter.release.xcconfig"; path = "Target Support Files/Pods-MaxSDKAdapter/Pods-MaxSDKAdapter.release.xcconfig"; sourceTree = "<group>"; };
-		E03660D42AEF86D6001CBB41 /* AlexMAXNetworkC2STool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlexMAXNetworkC2STool.h; path = ../../../../../../../../../Desktop/temp_sdk/AnyThinkSDK/AnyThinkSDK/Network/AlexMax/Base/C2S/AlexMAXNetworkC2STool.h; sourceTree = "<group>"; };
-		E03660D52AEF86D6001CBB41 /* AlexMAXNetworkC2STool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlexMAXNetworkC2STool.m; path = ../../../../../../../../../Desktop/temp_sdk/AnyThinkSDK/AnyThinkSDK/Network/AlexMax/Base/C2S/AlexMAXNetworkC2STool.m; sourceTree = "<group>"; };
+		E013C4452B0DA0A40060B40E /* AlexMAXNetworkC2STool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlexMAXNetworkC2STool.m; sourceTree = "<group>"; };
+		E013C4462B0DA0A40060B40E /* AlexMAXNetworkC2STool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlexMAXNetworkC2STool.h; sourceTree = "<group>"; };
 		E0D1A9EF298A0457008BAFBD /* MaxCustomSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaxCustomSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0D1A9F2298A0457008BAFBD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E0D1A9F3298A0457008BAFBD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -273,8 +273,8 @@
 		E0D1AA46298A154D008BAFBD /* C2S */ = {
 			isa = PBXGroup;
 			children = (
-				E03660D42AEF86D6001CBB41 /* AlexMAXNetworkC2STool.h */,
-				E03660D52AEF86D6001CBB41 /* AlexMAXNetworkC2STool.m */,
+				E013C4462B0DA0A40060B40E /* AlexMAXNetworkC2STool.h */,
+				E013C4452B0DA0A40060B40E /* AlexMAXNetworkC2STool.m */,
 				E0D1AA4B298A154D008BAFBD /* AlexMaxBiddingRequest.h */,
 				E0D1AA48298A154D008BAFBD /* AlexMaxBiddingRequest.m */,
 				E0D1AA47298A154D008BAFBD /* AlexMaxC2SBiddingRequestManager.h */,
@@ -309,12 +309,12 @@
 				E0D1AA13298A0A74008BAFBD /* MaxSDKAdapter.h in Headers */,
 				E0D1AA60298A154E008BAFBD /* AlexMaxNativeRenderer.h in Headers */,
 				E0D1AA6F298A154E008BAFBD /* AlexMaxBannerCustomEvent.h in Headers */,
-				E03660D62AEF86D6001CBB41 /* AlexMAXNetworkC2STool.h in Headers */,
 				E0D1AA5C298A154E008BAFBD /* AlexMaxNativeCustomEvent.h in Headers */,
 				E0D1AA64298A154E008BAFBD /* AlexMaxRewardedVideoCustomEvent.h in Headers */,
 				E0D1AA55298A154E008BAFBD /* AlexMaxSplashAdapter.h in Headers */,
 				E0D1AA70298A154E008BAFBD /* AlexMaxBannerAdapter.h in Headers */,
 				E0D1AA66298A154E008BAFBD /* AlexMaxC2SBiddingRequestManager.h in Headers */,
+				E013C4482B0DA0A40060B40E /* AlexMAXNetworkC2STool.h in Headers */,
 				E0D1AA53298A154E008BAFBD /* AlexMaxSplashCustomEvent.h in Headers */,
 				E0D1AA61298A154E008BAFBD /* AlexMaxRewardedVideoAdapter.h in Headers */,
 			);
@@ -535,8 +535,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0D1AA56298A154E008BAFBD /* AlexMaxSplashCustomEvent.m in Sources */,
+				E013C4472B0DA0A40060B40E /* AlexMAXNetworkC2STool.m in Sources */,
 				E0D1AA5B298A154E008BAFBD /* AlexMaxNativeAdapter.m in Sources */,
-				E03660D72AEF86D6001CBB41 /* AlexMAXNetworkC2STool.m in Sources */,
 				E0D1AA5A298A154E008BAFBD /* AlexMaxInterstitialCustomEvent.m in Sources */,
 				E0D1AA5D298A154E008BAFBD /* AlexMaxNativeRenderer.m in Sources */,
 				E0D1AA5E298A154E008BAFBD /* AlexMaxNativeCustomEvent.m in Sources */,

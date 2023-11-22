@@ -3,10 +3,16 @@
 #import <AppLovinSDK/AppLovinSDK.h>
 
 NS_ASSUME_NONNULL_BEGIN
+#define AlexMaxAdapterVersion 1.0.1
+
+typedef NS_ENUM(NSUInteger, AlexMaxNativeRenderType) {
+    AlexMaxNativeRenderTypeTemplate = 1,
+    AlexMaxNativeRenderTypeSelfRendering = 2,
+};
 
 @class ATUnitGroupModel,ATAdCustomEvent,ATBidInfo;
 
-#define ATMaxStartInitSuccessKey @"com.MaxStart_init_success"
+#define AlexMaxStartInitSuccessKey @"com.AlexMaxStart_init_success"
 
 @interface AlexMaxBaseManager : ATNetworkBaseManager
 
