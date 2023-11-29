@@ -6,7 +6,6 @@
 #import "AlexMaxBiddingRequest.h"
 #import "AlexMaxC2SBiddingRequestManager.h"
 
-
 @interface AlexMaxInterstitialAdapter ()
 @property(nonatomic, strong) MAInterstitialAd *interstitialAd;
 @property(nonatomic, strong) AlexMaxInterstitialCustomEvent *customEvent;
@@ -36,7 +35,7 @@
     self.serverInfo = serverInfo;
     self.completionBlock = completion;
     
-    if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
+    if ([[AlexMaxBaseManager sharedManager] getMAXInitSucceedStatus]) {
         [self initSuccessStartLoad];
     }else{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:AlexMaxStartInitSuccessKey object:nil];

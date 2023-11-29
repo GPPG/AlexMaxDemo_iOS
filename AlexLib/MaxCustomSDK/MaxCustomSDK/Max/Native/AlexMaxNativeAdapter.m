@@ -36,7 +36,7 @@
     self.serverInfo = serverInfo;
     self.completionBlock = completion;
     
-    if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
+    if ([[AlexMaxBaseManager sharedManager] getMAXInitSucceedStatus]) {
         [self initSuccessStartLoad];
     }else{
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(initSuccessStartLoad) name:AlexMaxStartInitSuccessKey object:nil];
@@ -45,7 +45,6 @@
 }
 
 - (void)initSuccessStartLoad {
-    
     
     dispatch_async(dispatch_get_main_queue(), ^{
 

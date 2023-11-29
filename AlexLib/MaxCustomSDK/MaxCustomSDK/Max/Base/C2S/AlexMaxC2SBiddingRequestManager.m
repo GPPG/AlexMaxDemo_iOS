@@ -7,7 +7,6 @@
 #import "AlexMaxRewardedVideoCustomEvent.h"
 #import "AlexMaxInterstitialCustomEvent.h"
 
-
 @implementation AlexMaxC2SBiddingRequestManager
 
 + (instancetype)sharedInstance {
@@ -23,7 +22,7 @@
     
     [[AlexMAXNetworkC2STool sharedInstance] saveRequestItem:request withUnitId:request.unitID];
     
-    if ([AlexMaxBaseManager sharedManager].isInitSucceed) {
+    if ([[AlexMaxBaseManager sharedManager] getMAXInitSucceedStatus]) {
         [self initSuccessStartLoad:request];
     }else{
         [self addInitObserver];
@@ -40,7 +39,6 @@
 }
 
 - (void)startInitSuccessNotification{
-
     [[AlexMaxBaseManager sharedManager].c2sRequestArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [self initSuccessStartLoad:obj];
     }];
@@ -50,7 +48,6 @@
 - (void)initSuccessStartLoad:(AlexMaxBiddingRequest *)request{
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         switch (request.adType) {
             case ATAdFormatInterstitial:
                 [self startLoadInterstitialAdWithRequest:request];

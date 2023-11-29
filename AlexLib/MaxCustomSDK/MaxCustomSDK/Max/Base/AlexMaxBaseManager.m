@@ -6,6 +6,7 @@
 
 @interface AlexMaxBaseManager()
 
+@property (atomic, assign) BOOL isMaxInitSucceed;
 
 @end
 
@@ -22,21 +23,23 @@
 
 #pragma mark - 初始化
 + (void)initWithCustomInfo:(NSDictionary *)serverInfo localInfo:(NSDictionary *)localInfo {
-    ATUnitGroupModel *unitGroupModel =(ATUnitGroupModel*)serverInfo[kATAdapterCustomInfoUnitGroupModelKey];
-    ATPlacementModel *placementModel = (ATPlacementModel*)serverInfo[kATAdapterCustomInfoPlacementModelKey];
-    
-    [AlexMaxBaseManager setPersonalizedStateWithUnitGroupModel:unitGroupModel];
-    
-    // for max dynamic HB to set sdkSetting
-    ALSdk *sdk = [ALSdk sharedWithKey:unitGroupModel.content[@"sdk_key"] ? unitGroupModel.content[@"sdk_key"] : @""];
-    ALSdkSettings *sdkSettings = sdk.settings;
-    
-    [AlexMaxBaseManager setSdkSettings:sdkSettings placementModel:placementModel];
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [[ATAPI sharedInstance] setVersion:[ALSdk version] forNetwork:kATNetworkNameMax];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ATUnitGroupModel *unitGroupModel =(ATUnitGroupModel*)serverInfo[kATAdapterCustomInfoUnitGroupModelKey];
+        ATPlacementModel *placementModel = (ATPlacementModel*)serverInfo[kATAdapterCustomInfoPlacementModelKey];
         
+        [AlexMaxBaseManager setPersonalizedStateWithUnitGroupModel:unitGroupModel];
+        
+        // for max dynamic HB to set sdkSetting
+        ALSdk *sdk = [ALSdk sharedWithKey:unitGroupModel.content[@"sdk_key"] ? unitGroupModel.content[@"sdk_key"] : @""];
+        ALSdkSettings *sdkSettings = sdk.settings;
+        
+        [AlexMaxBaseManager setSdkSettings:sdkSettings placementModel:placementModel];
+        
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [[ATAPI sharedInstance] setVersion:[ALSdk version] forNetwork:kATNetworkNameMax];
+            
+        });
     });
 }
 
@@ -61,23 +64,69 @@
     });
 }
 
+
+
 + (void)initMaxSdk:(NSDictionary * _Nonnull)serverInfo {
     
     ATPlacementModel *placementModel = (ATPlacementModel*)serverInfo[kATAdapterCustomInfoPlacementModelKey];
     ATUnitGroupModel *unitGroupModel =(ATUnitGroupModel*)serverInfo[kATAdapterCustomInfoUnitGroupModelKey];
     
     ALSdkSettings *settings = [[ALSdkSettings alloc] init];
-    //        settings.isVerboseLogging = YES;
-    //        settings.testDeviceAdvertisingIdentifiers = @[@"CDA35DC1-0212-4D62-99F2-D564818A4000"];
     [AlexMaxBaseManager setSdkSettings:settings placementModel:placementModel];
+    
+    if ([self whetherCallApplovinInitAPI]) {
+        [self callApplovinInitApi:serverInfo unitGroupModel:unitGroupModel];
+    } else {
+        [self callMaxInitApi:serverInfo unitGroupModel:unitGroupModel settings:settings];
+    }
+}
+
++ (void)callMaxInitApi:(NSDictionary * _Nonnull)serverInfo unitGroupModel:(ATUnitGroupModel *)unitGroupModel settings:(ALSdkSettings *)settings {
     
     ALSdk *sdk = [ALSdk sharedWithKey:unitGroupModel.content[@"sdk_key"] ? unitGroupModel.content[@"sdk_key"] : @"" settings: settings];
     sdk.mediationProvider = @"max";
     sdk.userIdentifier = unitGroupModel.content[@"userID"];
     [sdk initializeSdkWithCompletionHandler:^(ALSdkConfiguration * _Nonnull configuration) {
-        [AlexMaxBaseManager sharedManager].isInitSucceed = YES;
+        [AlexMaxBaseManager sharedManager].isMaxInitSucceed = YES;
         [[NSNotificationCenter defaultCenter] postNotificationName:AlexMaxStartInitSuccessKey object:nil];
     }];
+}
+
++ (void)callApplovinInitApi:(NSDictionary * _Nonnull)serverInfo unitGroupModel:(ATUnitGroupModel *)unitGroupModel {
+    NSMutableDictionary *info = serverInfo.mutableCopy;
+    info[@"sdkkey"] = unitGroupModel.content[@"sdk_key"] ? unitGroupModel.content[@"sdk_key"] : @"";
+    
+    Class clazz = NSClassFromString(@"ATApplovinBaseManager");
+    if (clazz && [clazz respondsToSelector:@selector(initWithCustomInfo:localInfo:)]) {
+        [clazz performSelector:@selector(initWithCustomInfo:localInfo:) withObject:info withObject:info];
+    }
+}
++ (BOOL)whetherCallApplovinInitAPI {
+    if (NSClassFromString(@"ATApplovinBaseManager") != nil) {
+        return YES;
+    }
+    return NO;
+}
+
+
+- (BOOL)getMAXInitSucceedStatus {
+    
+    if ([AlexMaxBaseManager whetherCallApplovinInitAPI]) {
+        return [self isApplovinInitSucceed];
+    }
+    return self.isMaxInitSucceed;
+}
+
+- (BOOL)isApplovinInitSucceed {
+    __block BOOL applovin = NO;
+    [[ATAPI sharedInstance] inspectInitFlagForNetwork:kATNetworkNameApplovin usingBlock:^NSInteger(NSInteger currentValue) {
+        if (currentValue == 2) {
+            applovin = YES;
+        }
+        return currentValue;
+    }];
+    NSLog(@"MAX---applovin---init:%d",applovin);
+    return applovin;
 }
 
 #pragma mark - 隐私权限
@@ -87,7 +136,7 @@
         [ALPrivacySettings setHasUserConsent:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinConscentStatusKey] boolValue]];
         [ALPrivacySettings setIsAgeRestrictedUser:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinUnderAgeKey] boolValue]];
     } else {
-        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;
+        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;        
         if (state) {
             [ALPrivacySettings setHasUserConsent:YES];
         } else {
