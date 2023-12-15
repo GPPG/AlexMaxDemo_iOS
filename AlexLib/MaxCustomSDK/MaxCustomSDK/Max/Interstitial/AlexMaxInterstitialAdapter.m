@@ -95,16 +95,6 @@
 #pragma mark - C2S
 + (void)bidRequestWithPlacementModel:(ATPlacementModel*)placementModel unitGroupModel:(ATUnitGroupModel*)unitGroupModel info:(NSDictionary*)info completion:(void(^)(ATBidInfo *bidInfo, NSError *error))completion {
     
-    AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:info[@"unit_id"]];
-    
-    if (request.customObject && request.bidCompletion) {
-        MAInterstitialAd *interstitialAd = request.customObject;
-        if (interstitialAd.isReady) {
-            ATBidInfo *bidInfo = [ATBidInfo bidInfoC2SWithPlacementID:placementModel.placementID unitGroupUnitID:unitGroupModel.unitID adapterClassString:unitGroupModel.adapterClassString price:request.price currencyType:ATBiddingCurrencyTypeUS expirationInterval:unitGroupModel.bidTokenTime customObject:nil];
-            request.bidCompletion(bidInfo, nil);
-            return;
-        }
-    }
     AlexMaxInterstitialCustomEvent *customEvent = [[AlexMaxInterstitialCustomEvent alloc]initWithInfo:info localInfo:info];
     customEvent.isC2SBiding = YES;
     customEvent.networkAdvertisingID = unitGroupModel.content[@"unit_id"];
