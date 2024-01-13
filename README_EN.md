@@ -1,6 +1,13 @@
 # AlexMaxDemo_iOS
 
-# Release Notes for Version 1.0.1:
+# Version description
+
+| Version     | TopOn SDK Version              |
+| ------------ | --------------------------- |
+| 1.0.3       |  >= 6.2.87            |
+| 1.0.2     | >= 6.2.10  <6.2.87      |
+
+Other:
 
 1. Added support for MAX's native self-rendered ad integration. Currently compatible with Applovin, Admob, and Pangle. Please refer to the [MaxAdapter support versions](https://dash.applovin.com/documentation/mediation/ios/ad-formats/native-manual) for more information.
 
