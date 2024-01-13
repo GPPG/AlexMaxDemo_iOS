@@ -1,7 +1,13 @@
 # AlexMaxDemo_iOS
 
-# v1.0.1版本更新说明：
+# 版本说明
 
+| Version     | TopOn SDK Version              |
+| ------------ | --------------------------- |
+| 1.0.3       |  >= 6.2.87            |
+| 1.0.2 | >= 6.2.10  <6.2.87      |
+
+其他点：
 1.支持Max的自渲染广告接入，目前能适配Applovin，Admob，Pangle 的接入，[MaxAdapter支持版本](https://dash.applovin.com/documentation/mediation/ios/ad-formats/native-manual)
 
 2.[TopOn原生自渲染广告集成文档](https://newdocs.toponad.com/docs/GCybzJ)
