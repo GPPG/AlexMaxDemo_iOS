@@ -138,9 +138,9 @@
     } else {
         BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;        
         if (state) {
-            [ALPrivacySettings setHasUserConsent:YES];
-        } else {
             [ALPrivacySettings setHasUserConsent:NO];
+        } else {
+            [ALPrivacySettings setHasUserConsent:YES];
         }
     }
 }
