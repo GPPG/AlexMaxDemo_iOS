@@ -46,8 +46,5 @@
     }
 }
 
-- (NSDictionary *)getRequests {
-    return self.requestDic;
-}
 
 @end

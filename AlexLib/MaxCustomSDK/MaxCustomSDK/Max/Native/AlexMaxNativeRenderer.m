@@ -8,6 +8,8 @@
 
 @property(nonatomic, weak) AlexMaxNativeCustomEvent *customEvent;
 
+@property (nonatomic, strong) MANativeAdView *nativeAdView;
+
 @end
 
 
@@ -52,18 +54,24 @@
 
 #pragma mark - 自渲染
 - (void)slefRenderRenderOffer:(ATNativeADCache * _Nonnull)offer {
-    MANativeAdView *nativeAdView = [self createMaxNativeAdView];
-      
+    
+    if (!self.nativeAdView) {
+        self.nativeAdView = [self createMaxNativeAdView];
+    }
+    
+    
     if (self.ADView.selfRenderView) {
-        [self.ADView.selfRenderView addSubview:nativeAdView];
-        [self.ADView.selfRenderView bringSubviewToFront:nativeAdView];
-        [nativeAdView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(self.ADView.selfRenderView);
+        self.nativeAdView.frame = self.ADView.selfRenderView.frame;
+        [self.ADView addSubview:self.nativeAdView];
+        [self.nativeAdView addSubview:self.ADView.selfRenderView];
+        [self.ADView bringSubviewToFront:self.nativeAdView];
+        [self.ADView.selfRenderView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(self.nativeAdView);
         }];
     } else {
-        [self.ADView addSubview:nativeAdView];
-        [self.ADView bringSubviewToFront:nativeAdView];
-        [nativeAdView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.ADView addSubview:self.nativeAdView];
+        [self.ADView bringSubviewToFront:self.nativeAdView];
+        [self.nativeAdView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(self.ADView);
         }];
     }
@@ -71,8 +79,7 @@
     [self.ADView layoutIfNeeded];
     
     if ([self.ADView respondsToSelector:@selector(titleLabel)] && self.ADView.titleLabel) {
-        [nativeAdView addSubview:self.ADView.titleLabel];
-        nativeAdView.titleLabel = self.ADView.titleLabel;
+        self.nativeAdView.titleLabel = self.ADView.titleLabel;
     }
     
     if ([self.ADView respondsToSelector:@selector(ctaLabel)] && self.ADView.ctaLabel) {
@@ -81,40 +88,35 @@
         ctaBtn.tag = self.ADView.ctaLabel.tag;
         ctaBtn.layer.cornerRadius = self.ADView.ctaLabel.layer.cornerRadius;
         ctaBtn.layer.masksToBounds = self.ADView.ctaLabel.layer.masksToBounds;
-        [nativeAdView addSubview:ctaBtn];
-        nativeAdView.callToActionButton = ctaBtn;
+        [self.nativeAdView addSubview:ctaBtn];
+        self.nativeAdView.callToActionButton = ctaBtn;
         self.ADView.ctaLabel.hidden = YES;
     }
     
     if ([self.ADView respondsToSelector:@selector(advertiserLabel)] && self.ADView.advertiserLabel) {
-        [nativeAdView addSubview:self.ADView.advertiserLabel];
-        nativeAdView.advertiserLabel = self.ADView.advertiserLabel;
+        self.nativeAdView.advertiserLabel = self.ADView.advertiserLabel;
     }
     
     if ([self.ADView respondsToSelector:@selector(textLabel)] && self.ADView.textLabel) {
-        [nativeAdView addSubview:self.ADView.textLabel];
-        nativeAdView.bodyLabel = self.ADView.textLabel;
+        self.nativeAdView.bodyLabel = self.ADView.textLabel;
     }
     
     if ([self.ADView respondsToSelector:@selector(iconImageView)] && self.ADView.iconImageView) {
-        [nativeAdView addSubview:self.ADView.iconImageView];
-        nativeAdView.iconImageView = self.ADView.iconImageView;
+        self.nativeAdView.iconImageView = self.ADView.iconImageView;
     }
     
     if ([self.ADView respondsToSelector:@selector(domainLabel)] && self.ADView.domainLabel) {
-        [nativeAdView addSubview:self.ADView.domainLabel];
-        nativeAdView.optionsContentView = self.ADView.domainLabel;
+        self.nativeAdView.optionsContentView = self.ADView.domainLabel;
     }
     
     if ([self.ADView respondsToSelector:@selector(mediaView)] && self.ADView.mediaView) {
-        [nativeAdView addSubview:self.ADView.mediaView];
-        nativeAdView.mediaContentView = self.ADView.mediaView;
+        self.nativeAdView.mediaContentView = self.ADView.mediaView;
     }
     
     if ([self.ADView respondsToSelector:@selector(dislikeButton)] && self.ADView.dislikeButton) {
         [self.ADView.selfRenderView bringSubviewToFront:self.ADView.dislikeButton];
     }
-    [self.customEvent.maxNativeAdLoader renderNativeAdView: nativeAdView withAd: self.customEvent.maxAd];
+    [self.customEvent.maxNativeAdLoader renderNativeAdView: self.nativeAdView withAd: self.customEvent.maxAd];
 }
 
 - (void)dealloc {

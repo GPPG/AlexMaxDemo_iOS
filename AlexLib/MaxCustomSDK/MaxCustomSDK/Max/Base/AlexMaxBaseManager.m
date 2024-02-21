@@ -132,16 +132,11 @@
 #pragma mark - 隐私权限
 + (void)setPersonalizedStateWithUnitGroupModel:(ATUnitGroupModel *)unitGroupModel {
     // privacy setting
-    if ([[ATAPI sharedInstance].networkConsentInfo.allKeys containsObject:kATNetworkNameMax]) {
-        [ALPrivacySettings setHasUserConsent:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinConscentStatusKey] boolValue]];
-        [ALPrivacySettings setIsAgeRestrictedUser:[[ATAPI sharedInstance].networkConsentInfo[kATNetworkNameMax][kATApplovinUnderAgeKey] boolValue]];
+    BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;
+    if (state) {
+        [ALPrivacySettings setHasUserConsent:NO];
     } else {
-        BOOL state = [[ATAPI sharedInstance] getPersonalizedAdState] == ATNonpersonalizedAdStateType ? YES : NO;        
-        if (state) {
-            [ALPrivacySettings setHasUserConsent:NO];
-        } else {
-            [ALPrivacySettings setHasUserConsent:YES];
-        }
+        [ALPrivacySettings setHasUserConsent:YES];
     }
 }
 

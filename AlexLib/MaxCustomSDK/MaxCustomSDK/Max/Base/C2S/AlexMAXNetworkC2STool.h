@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)removeRequestItemWithUnitID:(NSString*)unitID;
 
-- (NSDictionary *)getRequests;
 
 @end
 

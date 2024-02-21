@@ -48,6 +48,14 @@
 - (void)initSuccessStartLoad:(AlexMaxBiddingRequest *)request{
     
     dispatch_async(dispatch_get_main_queue(), ^{
+        if (request) {
+            NSString *unitId = request.unitGroup.content[@"unit_id"];
+            if (!unitId || [unitId isEqualToString:@""]) {
+                NSError *error = [[NSError alloc] initWithDomain:@"com.anythink" code:2000 userInfo:nil];
+                [AlexMaxC2SBiddingRequestManager disposeLoadFailCall:error key:@"unit_id must be not nil or empty" unitID:unitId];
+                return;
+            }
+        }
         switch (request.adType) {
             case ATAdFormatInterstitial:
                 [self startLoadInterstitialAdWithRequest:request];
