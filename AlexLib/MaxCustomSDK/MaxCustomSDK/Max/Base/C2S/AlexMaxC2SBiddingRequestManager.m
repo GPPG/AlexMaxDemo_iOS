@@ -18,35 +18,15 @@
     return sharedInstance;
 }
 
-- (void)startWithRequestItem:(AlexMaxBiddingRequest *)request{
-    
+- (void)startWithRequestItem:(AlexMaxBiddingRequest *)request {
     [[AlexMAXNetworkC2STool sharedInstance] saveRequestItem:request withUnitId:request.unitID];
     
-    if ([[AlexMaxBaseManager sharedManager] getMAXInitSucceedStatus]) {
+    [AlexMaxBaseManager initWithCustomInfo:request.extraInfo localInfo:request.extraInfo maxInitFinishBlock:^{
         [self initSuccessStartLoad:request];
-    }else{
-        [self addInitObserver];
-        [AlexMaxBaseManager initC2SALSDKWithServerInfo:request.extraInfo parObject:request];
-    }
-}
-
-- (void)addInitObserver {
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startInitSuccessNotification) name:AlexMaxStartInitSuccessKey object:nil];
-    });
-}
-
-- (void)startInitSuccessNotification{
-    [[AlexMaxBaseManager sharedManager].c2sRequestArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self initSuccessStartLoad:obj];
     }];
-    [[AlexMaxBaseManager sharedManager].c2sRequestArray removeAllObjects];
 }
 
-- (void)initSuccessStartLoad:(AlexMaxBiddingRequest *)request{
-    
+- (void)initSuccessStartLoad:(AlexMaxBiddingRequest *)request {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (request) {
             NSString *unitId = request.unitGroup.content[@"unit_id"];
@@ -85,8 +65,7 @@
 
 #pragma mark - ATAdFormatInterstitial
 - (void)startLoadInterstitialAdWithRequest:(AlexMaxBiddingRequest *)request {
-    
-    MAInterstitialAd *interstitialAd = [[MAInterstitialAd alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk sharedWithKey:request.unitGroup.content[@"sdk_key"]]];
+    MAInterstitialAd *interstitialAd = [[MAInterstitialAd alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk shared]];
     
     interstitialAd.delegate = (AlexMaxInterstitialCustomEvent *)request.customEvent;    
     // 动态出价设置最大价格
@@ -103,7 +82,7 @@
 
 #pragma mark - ATAdFormatRewardedVideo
 - (void)startLoadRewardedVideoAdWithRequest:(AlexMaxBiddingRequest *)request {
-    MARewardedAd *rewardedAd = [MARewardedAd sharedWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk sharedWithKey:request.unitGroup.content[@"sdk_key"]]];
+    MARewardedAd *rewardedAd = [MARewardedAd sharedWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk shared]];
     rewardedAd.delegate = (AlexMaxRewardedVideoCustomEvent *)request.customEvent;
     // 动态出价设置最大价格
     if ([request.extraInfo.allKeys containsObject :kATAdapterCustomInfoMaxFilledPriceKey]) {
@@ -119,8 +98,7 @@
 
 #pragma mark - ATAdFormatNative
 - (void)startLoadNativeAdWithRequest:(AlexMaxBiddingRequest *)request {
-    
-    MANativeAdLoader *maxNativeAdLoader = [[MANativeAdLoader alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk sharedWithKey:request.unitGroup.content[@"sdk_key"]]];
+    MANativeAdLoader *maxNativeAdLoader = [[MANativeAdLoader alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk shared]];
     maxNativeAdLoader.nativeAdDelegate = (AlexMaxNativeCustomEvent *)request.customEvent;
     maxNativeAdLoader.revenueDelegate = (AlexMaxNativeCustomEvent *)request.customEvent;
 
@@ -138,9 +116,8 @@
 
 #pragma mark - ATAdFormatBanner
 - (void)startLoadBannerAdWithRequest:(AlexMaxBiddingRequest *)request {
-    
     MAAdFormat *format = [request.unitGroup.content[@"unit_type"] boolValue] ? [MAAdFormat mrec] : [MAAdFormat banner];
-    MAAdView *adView = [[MAAdView alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] adFormat:format sdk:[ALSdk sharedWithKey:request.unitGroup.content[@"sdk_key"]]];
+    MAAdView *adView = [[MAAdView alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] adFormat:format sdk:[ALSdk shared]];
     adView.delegate = (AlexMaxBannerCustomEvent *)request.customEvent;
     // 动态出价设置最大价格
     if ([request.extraInfo.allKeys containsObject :kATAdapterCustomInfoMaxFilledPriceKey]) {
@@ -167,8 +144,7 @@
 
 #pragma mark - ATAdFormatSplash
 - (void)startLoadSplashAdWithRequest:(AlexMaxBiddingRequest *)request {
-    
-    MAAppOpenAd *splashAd = [[MAAppOpenAd alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk sharedWithKey:request.unitGroup.content[@"sdk_key"]]];
+    MAAppOpenAd *splashAd = [[MAAppOpenAd alloc] initWithAdUnitIdentifier:request.unitGroup.content[@"unit_id"] sdk:[ALSdk shared]];
     splashAd.delegate = (AlexMaxSplashCustomEvent *)request.customEvent;
     // 动态出价设置最大价格
     if ([request.extraInfo.allKeys containsObject: kATAdapterCustomInfoMaxFilledPriceKey]) {
@@ -184,7 +160,6 @@
 
 #pragma mark - create C2S bidinfo
 + (void)disposeLoadSuccessCall:(NSString *)priceStr customObject:(id)customObject unitID:(NSString *)unitID {
-
     if ([priceStr doubleValue] < 0) {
         priceStr = @"0";
     }
@@ -204,7 +179,6 @@
 }
 
 + (void)disposeLoadFailCall:(NSError *)error key:(NSString *)keyStr unitID:(NSString *)unitID {
-    
     AlexMaxBiddingRequest *request = [[AlexMAXNetworkC2STool sharedInstance] getRequestItemWithUnitID:unitID];
     if (request == nil) {
         return;
@@ -219,7 +193,6 @@
 }
 
 + (NSString *)handleRateForBidInfo:(ATBidInfo *)bidInfo {
-    
     NSString *currentRate = bidInfo.curRate;
     if (!currentRate && [currentRate doubleValue] > 1) {
         return currentRate;
@@ -235,4 +208,5 @@
     }
     return currentRate;
 }
+
 @end
