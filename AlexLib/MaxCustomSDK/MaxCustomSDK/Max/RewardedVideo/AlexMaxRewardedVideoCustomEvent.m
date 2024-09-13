@@ -55,15 +55,6 @@
 }
 
 #pragma mark - MARewardedAdDelegate Protocol
-- (void)didStartRewardedVideoForAd:(MAAd *)ad {
-    [self trackRewardedVideoAdVideoStart];
-}
-
-- (void)didCompleteRewardedVideoForAd:(MAAd *)ad {
-    [self trackRewardedVideoAdVideoEnd];
-    self.closeType = ATAdCloseCountdown;
-}
-
 - (void)didRewardUserForAd:(MAAd *)ad withReward:(MAReward *)reward {
     [self trackRewardedVideoAdRewarded];
 }
